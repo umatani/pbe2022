@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+      <html>
+        <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- prism -->
+        <link href="./__css/prism.css" rel="stylesheet" />
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+        <!-- MathJAX -->
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <title>03_racket_mode</title>
+         <!-- github-like look & feel (load last) -->
+        <link rel="stylesheet" href="./__css/github.css">
+        </head>
+        <body>
+        <!-- prism -->
+        <script src="./__css/prism.js"></script>
+        <!-- Bootstrap Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script><h1 id="emacs%E3%81%AEracket-mode%E4%B8%8D%E5%85%B7%E5%90%88%E3%81%AE%E4%BF%AE%E6%AD%A3">Emacsのracket-mode不具合の修正</h1>
+<p>Schemeコード中にある種の誤りがあると，Emacsの対話環境で実行中のRacket処理系が異常終了することが分かりました．これは，Emacs用のRacket開発環境であるracket-modeの不具合（バグ）です．</p>
+<p>バグが修正されるのを待っていられませんので，正常に動作していた頃の古いバージョンを使うよう，Emacsの設定をやり直します．<a href="../chap/01_intro.html">第1回配布資料</a>の手順どおりに<strong>環境構築を済ませた後</strong>で，以下の作業を行ってください．</p>
+<ol>
+<li><code>.emacs.d</code>ディレクトリの削除</li>
+</ol>
+<pre><code class="language-shell">$ cd
+$ rm -rf .emacs.d/
+</code></pre>
+<ol start="2">
+<li>Emacsを一度起動</li>
+</ol>
+<pre><code class="language-shell">$ runemacs
+</code></pre>
+<p>起動したらそのままEmacsを一旦終了．</p>
+<ol start="3">
+<li>修正版の<code>init.el</code>を設置</li>
+</ol>
+<p><a href="racket-mode/init.el">このリンクの<code>init.el</code></a>をダウンロードして以下を実行．</p>
+<pre><code class="language-shell">$ cd
+$ mv Downloads/init.el .emacs.d/
+</code></pre>
+<ol start="4">
+<li>正常な<code>racket-mode</code>の取得</li>
+</ol>
+<p><a href="racket-mode/racket-mode-v2.zip">このリンクの<code>racket-mode-v2.zip</code></a>をダウンロードして以下を実行．</p>
+<p>もし第1回資料に書かれている <code>unzip</code> をまだインストールしていないなら，次を実行してインストール．</p>
+<pre><code class="language-shell">$ scoop install zip unzip
+</code></pre>
+<p>その後，以下を実行して <code>racket-mode-v2.zip</code> を適切な場所に展開．</p>
+<pre><code class="language-shell">$ cd
+$ mkdir lib
+$ cd lib
+$ mv ../Downloads/racket-mode-v2.zip .
+$ unzip racket-mode-v2.zip
+</code></pre>
+<ol start="5">
+<li>動作確認</li>
+</ol>
+<pre><code class="language-shell">$ runemacs
+</code></pre>
+<p>でEmacsを起動．第1回資料と同じようにしばらく待ってパッケージのインストールが完了したら，またEmacsを終了．</p>
+<p>もう一度，</p>
+<pre><code class="language-shell">$ runemacs
+</code></pre>
+<p>で Emacs を起動し，<code>sample.rkt</code>ファイルを開いて以下のようなプログラムを書き，<code>C-c C-k</code>で実行．</p>
+<pre><code class="language-racket">#lang racket
+
+(define a 1)
+(define (inc x) (+ x b))
+</code></pre>
+<p>異常終了せず，次のようなエラーが表示されるだけであればOK．</p>
+<pre><code class="language-racket">; /Users/umatani/sample.rkt:4:21: b: unbound identifier
+;   in: b
+</code></pre>
+</body></html>

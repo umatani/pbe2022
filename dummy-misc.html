@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <title>演習ページ執筆マニュアル</title>
+    <link rel="stylesheet" href="tufte.css"/>
+    <link rel="stylesheet" href="latex.css"/>
+    <link rel="stylesheet" href="umatani.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 綺麗なアイコン -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          rel="stylesheet"/>
+    <!-- <\!-- Highlight.js -\-> -->
+    <!-- <link rel="stylesheet" href="highlight/styles/default.css"/> -->
+    <!-- <script src="highlight/highlight.pack.js"></script> -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- 数式 -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+          }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="top">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+
+        <span><a class="ghost">&larr; Previous</a></span>
+        </li>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+
+      </ul>
+    </nav>
+    <article>
+      <h1 id="tufte-css"><div id="top"/>
+        演習ページ執筆マニュアル
+        <span class="alert"> 部外秘</span>
+      </h1>
+
+
+
+      <section><h2>概要</h2><p>本演習ホームページは，<a href="https://docs.racket-lang.org/pollen/index.html" class="external">Pollen</a>というRacket上の文書作成ツールを使って作成している．このページでは，本演習用にカスタマイズされたPollenのマークアップ言語を使って文章を記述する方法について説明する．</p><p><code>XXXX.html</code>という名前のHTMLファイルを作成する場合には，<code>XXXX.html.pm</code>という名前のファイルにマークアップを含んだHTMLを記述する．</p></section><section><h2><span>入力サンプル集</span></h2><h3>基本</h3><p>これはサンプルの文です．<span class="weak">これは次の行です．</span></p><p>This is a sentence. This is another sentence.</p><p>これは傍注のついたサンプル文です<label for="side42808" class="margin-toggle sidenote-number"></label><input type="checkbox" id="side42808" class="margin-toggle"/><span class="sidenote">これは重要ではない説明です．</span>．</p><h3>図</h3><figure class=""><label for="fig42809" class="margin-toggle">&amp;#8853;</label><input type="checkbox" id="fig42809" class="margin-toggle"/><a href="fig/win_update.png"><img src="fig/win_update.png" alt="Updating Windows"/></a><span class="marginnote">Windowsをアップデートしている画面．</span></figure><p>次はテキストからのスクリーンキャプチャ結果．本当は白背景の画像だが，CSS中において<code>img</code>タグに対し「<code>mix-blend-mode: multiply;</code>」と指定することにより，背景色が自然になる．</p><figure class=""><label for="fig42810" class="margin-toggle">&amp;#8853;</label><input type="checkbox" id="fig42810" class="margin-toggle"/><a href="fig/dfa.png"><img src="fig/dfa.png" alt="DFA"/></a><span class="marginnote">制約ベースのデータフロー解析．</span></figure><p>本文中ではなく傍注に画像を含める例<label for="side42811" class="margin-toggle sidenote-number"></label><input type="checkbox" id="side42811" class="margin-toggle"/><span class="sidenote">傍注の図は少し小さくなるため，クリックで原寸大の画像を表示するようにしている．</span>．</p><figure><label for="fig42812" class="margin-toggle">&amp;#8853;</label><input type="checkbox" id="fig42812" class="margin-toggle"/><span class="marginnote"><a href="fig/emacs.png"><img src="fig/emacs.png" alt="Emacs in Use"/></a>図: 使用中のEmacs</span></figure><p>上のバッファではこの文書を作成するためのPollenというツールの設定ファイル{<code>pollen.rkt</code>}を用いている．下のバッファではそれを実際にRacket上で実行している．</p><h3>数式</h3><p>MathJax を使えば，$2^{\aleph_\alpha} = \aleph_{\alpha+1}$のようなインライン数式も書ける．さらに：$$\begin{align}
+\pi &amp;= 4\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1} \\
+&amp;\approx 3.14
+\end{align}$$のようなディスプレイ形式も可能．</p><h3>課題</h3><p>SICPの課題を表示．元サイト(日本語版)へのリンク，課題ファイルを含められるようにしている．番号付けは自動で行う．on/offも可能にしたい．</p><pre><code>◊exercise[1 1 "https://sicp.iijlab.net/fulltext/x117.html#ex106"]{
+  ◊p{
+    上記リンク先の問題1.6を解きなさい．
+    配布ファイル◊code{ex-1.6.rkt}に解答コードを書き加えて完成させること．
+  }
+  ◊blockquote{補足：こんな問題は簡単だから一瞬で解けてしまうでしょう．}
+}</code></pre><div class="exercise"><h4>課題1.1 [★] [<a href="https://sicp.iijlab.net/fulltext/x117.html#ex106" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>上記リンク先の問題1.6を解きなさい．配布ファイル<code>ex-1.6.rkt</code>に解答コードを書き加えて完成させること．</p><blockquote>補足：こんな問題は簡単だから一瞬で解けてしまうでしょう．</blockquote></p></div><h3>コード</h3><p>Racketコードでは<code>define-syntax</code>を多用すべし．</p><div class="highlight"><pre><code>;; compute factorial
+(define (fact n)
+  (if (= n 0)
+      1 ;; return one
+      (* n (fact (sub1 n)))))</code></pre></div><p>Python</p><p>横幅を広げたいときは<code>fullwidth</code>タグで囲む．</p><div class="highlight"><pre><code>for x in range(10):
+    print x
+if zero is False:
+    print "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! "</code></pre></div><p>(以下，本体のどこかで説明に含める．)背景が暗くなっているところは，前回から更新された部分です．このページの説明コードだけでなく，自分で書いたコードでも差分だけ見たくなることがありますが，そのためにシェルの<code>diff</code>コマンドです<label for="side42813" class="margin-toggle sidenote-number"></label><input type="checkbox" id="side42813" class="margin-toggle"/><span class="sidenote">実際，このホームページ自体，<code>diff</code>コマンドを呼び出すSchemeプログラムによって自動生成されています．コマンドに生成させることで間違いを防いだり，後から内容を追加・変更した場合でも最新の差分を自動で計算してくれるため，このような些細な箇所でさえプログラミングを行うと非常に便利です．</span>．(<code>diff</code>の使い方を説明．)</p><p>以下はファイルからの抜粋．</p><div class="filename" decode="exclude">foo--bar.rkt</div><div class="highlight"><pre><code>(define (fact n)
+  (if (= n 0) ;; check is zero?
+      1
+      (* n (fact (sub1 n)))))</code></pre></div><p>以下はファイル全体．横幅を広げたいときは<code>fullwidth</code>タグで囲む．</p><pre><code>◊fullwidth{
+  ◊filebox-highlight["pollen.rkt" 'racket
+                     (file-&gt;string "pollen.rkt")]
+}</code></pre><div class="fullwidth"><div class="filename" decode="exclude">pollen.rkt</div><div class="highlight"><pre><code>#lang racket
+(require racket/set)
+(require pollen/core pollen/decode pollen/tag)
+(require pollen/template/html)
+(require pollen/unstable/pygments)
+;(require scribble/manual)
+
+(provide (all-defined-out) highlight)
+(provide file-&gt;string)
+(provide set-intersect string-contains?)
+
+;; TeXライクなパラグラフ&amp;改行処理
+;; 英単語間にスペースは自動挿入されないので注意
+(define exclusion-mark-attr '(decode "exclude"))
+(define (root . xs)
+  (decode `(@ ,@xs)
+          #:txexpr-elements-proc decode-para
+          #:string-proc (compose1 smart-quotes smart-dashes)
+          #:exclude-tags '(pre code)
+          #:exclude-attrs (list exclusion-mark-attr)))
+
+(define (decode-para elements)
+  (decode-paragraphs elements
+                     #:linebreak-proc decode-newline))
+
+(define (decode-newline elements)
+  (decode-linebreaks elements #f))
+
+;; TODOマーク
+(define (todo . txts)
+  (margin-note `(span ([style "background-color:red; color:white;"])
+                      "TODO: " ,@txts)))
+
+;; 著者
+(define (author metas)
+  (when/splice (select-from-metas 'author metas)
+    (-&gt;html
+     `(p ([class "subtitle"])
+         ,(select-from-metas 'author metas)))))
+
+;; テキスト対応節の表示
+(define (text-sec metas)
+  (hyperlink (second (select-from-metas 'text-sec metas))
+             "テキスト： "
+             (first (select-from-metas 'text-sec metas))
+             "節"))
+
+;; ソースファイル
+(define (ex-file metas)
+  (ref (select-from-metas 'ex-file metas)
+       "配布ファイル： "
+       (last (string-split (select-from-metas 'ex-file metas)
+                           "/"))))
+
+;; sections
+(define (section title . xs)
+  `(section
+    (h2 ,title)
+    ,@xs))
+
+(define subsection (default-tag-function 'h3))
+
+;; リンク
+(define (ref url . texts)
+  `(a ((href ,url) (class "internal")) ,@texts))
+(define (hyperlink url . texts)
+  `(a ((href ,url) (class "external")) ,@texts))
+
+;; 薄く表示．strongの逆
+(define (weak . xs)
+  `(span ([class "weak"]) ,@xs))
+
+;; 警告表示．公開時に含むべきでない
+(define (alert . xs)
+  `(span ([class "alert"]) ,@xs))
+
+;; 数式
+(define ($ . xs)
+  (apply string-append `("$" ,@xs "$")))
+
+(define ($$ . xs)
+  (apply string-append `("$$" ,@xs "$$")))
+
+;; ページのメタ情報関連
+(define (page.title p)
+  (select-from-metas 'title p))
+
+(define (page.public? p)
+  (equal? "public" (select-from-metas 'status p)))
+
+(define (page.date p)
+  (format "~a月~a日"
+          (select-from-metas 'month p)
+          (select-from-metas 'day p)))
+
+(define (filebox filename . xs)
+  `(@ (div ([class "filename"] ,exclusion-mark-attr)
+           ,(format "~a" filename))
+      ,@xs))
+
+(define (shellblock . txts)
+  `(pre (code ([class "shell"]) ,@txts)))
+
+(define (codeblock . txts)
+  `(pre (code ,@txts)))
+
+(define (quot . txts)
+  `(blockquote (p ,@txts)))
+
+(define (epigraph . txts)
+  `(div ([class "epigraph"]) (blockquote (p ,@txts))))
+
+;; ;; Highlight.js
+;; (define (highlight #:line-numbers? [l #f]
+;;                    #:css-class [c #f] #:lines [ls #f]
+;;                    lang . xs)
+;;    `(pre (code ((class ,(format "~a" lang))) ,@xs)))
+
+(define (filebox-highlight
+         #:lines [lines '()]
+         #:css-class [css-class "source"]
+         filename lang . xs)
+  (filebox filename (apply highlight lang
+                           #:line-numbers? #f
+                           #:css-class css-class
+                           #:lines lines xs)))
+
+(define (fullwidth . xs)
+  `(div ([class "fullwidth"]) ,@xs))
+
+;; 傍注
+(define (side-note . txts)
+  (let ([id (symbol-&gt;string (gensym "side"))])
+    `(@ (label ([for ,id] [class "margin-toggle sidenote-number"]))
+        (input ([type "checkbox"] [id ,id] [class "margin-toggle"]))
+        (span ([class "sidenote"]) ,@txts))))
+
+;; 番号なし傍注
+(define (margin-note . txts)
+  (let ([id (symbol-&gt;string (gensym "mn"))])
+    `(@ (label ([for ,id] [class "margin-toggle"]) "&amp;#8853;")
+        (input ([type "checkbox"] [id ,id] [class "margin-toggle"]))
+        (span ([class "marginnote"]) ,@txts))))
+
+;; 図
+(define (figure #:fullwidth [fw #f] img alt . txts)
+  (let ([id (symbol-&gt;string (gensym "fig"))])
+    `(figure ([class ,(if fw "fullwidth"
+                             "")]) (label ([for ,id] [class "margin-toggle"]) "&amp;#8853;")
+             (input ([type "checkbox"] [id ,id] [class "margin-toggle"]))
+             (a ([href ,img]) (img ([src ,img] [alt ,alt])))
+             (span ([class "marginnote"])
+                   ,@txts)
+             )))
+
+(define (margin-figure img alt . txts)
+  (let ([id (symbol-&gt;string (gensym "fig"))])
+    `(figure (label ([for ,id] [class "margin-toggle"]) "&amp;#8853;")
+             (input ([type "checkbox"] [id ,id] [class "margin-toggle"]))
+             (span ([class "marginnote"])
+                   (a ([href ,img]) (img ([src ,img] [alt ,alt])))
+                   ,@txts))))
+
+(define (exercise #:star [st 1] chap number link . texts)
+  `(div ([class "exercise"])
+        (h4  ,(string-append
+               "課題"
+               (number-&gt;string chap) "." (number-&gt;string number)
+               " ")
+             "[" ,(string-join (make-list st "★") "") "]"
+             " [" ,(hyperlink link "テキスト中の問題文へのリンク") "]")
+        (p ,@texts)))
+
+(define (dot-campus)
+  (hyperlink "https://ku-lms.kanagawa-u.ac.jp/campus" "dotCampus"))
+</code></pre></div></div></section>
+    </article>
+    <nav class="bottom">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+
+        <span><a class="ghost">&larr; Previous</a></span>
+        </li>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+
+        <li class="right copy">&copy; 2022 Seiji Umatani</li>
+      </ul>
+    </nav>
+  </body>
+</html>

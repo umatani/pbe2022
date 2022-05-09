@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <title>8. 記号データ，抽象データの多重表現</title>
+    <link rel="stylesheet" href="../tufte.css"/>
+    <link rel="stylesheet" href="../latex.css"/>
+    <link rel="stylesheet" href="../umatani.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 綺麗なアイコン -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          rel="stylesheet"/>
+    <!-- <\!-- Highlight.js -\-> -->
+    <!-- <link rel="stylesheet" href="highlight/styles/default.css"/> -->
+    <!-- <script src="highlight/highlight.pack.js"></script> -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- 数式 -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+          }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="top">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+
+        <span><a class="ghost">&larr; Previous</a></span>
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+      </ul>
+    </nav>
+    <article>
+      <h1 id="tufte-css"><div id="top"/>
+        8. 記号データ，抽象データの多重表現
+        <span class="alert"> 部外秘</span>
+      </h1>
+
+
+      <ul class="signpost"><li>　</li><li><a href="../pdf/jsicp.pdf#page=181" class="external">テキスト： 2.3, 2.4節</a></li><li><a href="../src/ex/ex08.zip" class="internal">配布ファイル： ex08.zip</a></li></ul>
+      <section><h2>はじめに</h2><p>講義では2.3節は前週に済んでいますが，演習では今回扱っています．</p></section><p><anchor id="exercise"></anchor></p><section><h2>今週の課題</h2><p>今回は，</p><blockquote><p><strong>解いた課題の★の数の合計が3個以上</strong></p></blockquote><p>であることを最低条件とします．</p><p>なお，課題8.2，課題8.3，課題8.4，課題8.5，課題8.9，課題8.10は，講義では扱っていない 2.3.2節と2.3.4節からの問題ですが，余力のある人はぜひチャレンジしてください．</p><ul><li>解いた課題の★の数の合計：3個以上</li><li>提出期限：6/8(水) 19:00</li><li>zip に圧縮するディレクトリ名：<tt>ex08</tt></li><li>提出する zip ファイル名：<tt>ex08.zip</tt></li></ul><div class="exercise"><h4>課題8.1 [★] [<a href="../pdf/jsicp.pdf#page=185" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.54を解きなさい．配布ファイル <code>ex08/ex08-1.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>equal?</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題8.2 [★★] [<a href="../pdf/jsicp.pdf#page=190" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.56を解きなさい．配布ファイル <code>ex08/ex08-2.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>exponentiation?</code>，<code>base</code>，<code>exponent</code>，<code>make-exponentiation</code> を定義しなさい．</p><p>さらに，問題文中のあらたな微分規則を手続き <code>deriv</code> に追加しなさい．<code>deriv</code> については「<code>((???) (???))</code>」だけを書き換えること．それ以外のところを書き換えてはいけません．</p></p></div><div class="exercise"><h4>課題8.3 [★★] [<a href="../pdf/jsicp.pdf#page=190" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.57を解きなさい．配布ファイル <code>ex08/ex08-3.rkt</code> に解答コードを書き加えて完成させること．</p><p>加算と乗算の表現を問題文中に指定されているとおりに拡張しなさい．</p><p>ヒント： <code>augend</code> と <code>multiplicand</code> を変更するだけで済む．</p></p></div><div class="exercise"><h4>課題8.4 [★] [<a href="../pdf/jsicp.pdf#page=191" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.58aを解きなさい．配布ファイル <code>ex08/ex08-4.rkt</code> に解答コードを書き加えて完成させること．</p><p>問題文の a を実現しなさい．（b は次の課題）</p></p></div><div class="exercise"><h4>課題8.5 [★★★★] [<a href="../pdf/jsicp.pdf#page=191" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.58bを解きなさい．配布ファイル <code>ex08/ex08-5.rkt</code> に解答コードを書き加えて完成させること．</p><p>問題文の b を実現しなさい．</p></p></div><div class="exercise"><h4>課題8.6 [★] [<a href="../pdf/jsicp.pdf#page=193" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.59を解きなさい．配布ファイル <code>ex08/ex08-6.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>union-set</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題8.7 [★] [<a href="../pdf/jsicp.pdf#page=195" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.61を解きなさい．配布ファイル <code>ex08/ex08-7.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>adjoin-set</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題8.8 [★★] [<a href="../pdf/jsicp.pdf#page=195" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.62を解きなさい．配布ファイル <code>ex08/ex08-8.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>union-set</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題8.9 [★★] [<a href="../pdf/jsicp.pdf#page=209" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.68を解きなさい．配布ファイル <code>ex08/ex08-9.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>encode-symbol</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題8.10 [★★] [<a href="../pdf/jsicp.pdf#page=209" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.69を解きなさい．配布ファイル <code>ex08/ex08-10.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>successive-merge</code> を定義しなさい．</p><p>なお，<code>test</code> を実行するためには前問の <code>encode</code> を完成させている必要がある．</p></p></div><div class="exercise"><h4>課題8.11 [★] [<a href="../pdf/jsicp.pdf#page=230" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.75を解きなさい．配布ファイル <code>ex08/ex08-11.rkt</code> に解答コードを書き加えて完成させること．</p><p>メッセージパッシング形式の <code>make-from-mag-ang</code> を定義しなさい．</p></p></div></section>
+    </article>
+    <nav class="bottom">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+
+        <span><a class="ghost">&larr; Previous</a></span>
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+        <li class="right copy">&copy; 2022 Seiji Umatani</li>
+      </ul>
+    </nav>
+  </body>
+</html>

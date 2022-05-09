@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <title>6. データ抽象入門</title>
+    <link rel="stylesheet" href="../tufte.css"/>
+    <link rel="stylesheet" href="../latex.css"/>
+    <link rel="stylesheet" href="../umatani.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 綺麗なアイコン -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          rel="stylesheet"/>
+    <!-- <\!-- Highlight.js -\-> -->
+    <!-- <link rel="stylesheet" href="highlight/styles/default.css"/> -->
+    <!-- <script src="highlight/highlight.pack.js"></script> -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- 数式 -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+          }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="top">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+        <a href="../chap/05_mid.html">&larr; Previous</a>
+
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+      </ul>
+    </nav>
+    <article>
+      <h1 id="tufte-css"><div id="top"/>
+        6. データ抽象入門
+        <span class="alert"> 部外秘</span>
+      </h1>
+
+
+      <ul class="signpost"><li>　</li><li><a href="../pdf/jsicp.pdf#page=117" class="external">テキスト： 2.1節</a></li><li><a href="../src/ex/ex06.zip" class="internal">配布ファイル： ex06.zip</a></li></ul>
+      <p><anchor id="exercise"></anchor></p><section><h2>今週の課題</h2><p>今回は，</p><blockquote><p><strong>解いた課題の★の数の合計が4個以上</strong></p></blockquote><p>であることを最低条件とします．もちろん，それに縛られず一つでも多くの課題にチャレンジしてください．</p><ul><li>解いた課題の★の数の合計：4個以上</li><li>提出期限：5/25(水) 19:00</li><li>zip に圧縮するディレクトリ名：<tt>ex06</tt></li><li>提出する zip ファイル名：<tt>ex06.zip</tt></li></ul><div class="exercise"><h4>課題6.1 [★] [<a href="../pdf/jsicp.pdf#page=122" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.1を解きなさい．配布ファイル <code>ex06/ex06-1.rkt</code> に解答コードを書き加えて完成させること．</p><p>改良版の <code>make-rat</code> は，以下の規約分数をつくる版を元にすること．</p><div class="highlight"><pre><code>(define (make-rat n d)
+  (let ((g (gcd n d)))
+    (cons (/ n g) (/ d g))))</code></pre></div></p></div><div class="exercise"><h4>課題6.2 [★★] [<a href="../pdf/jsicp.pdf#page=124" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.2を解きなさい．配布ファイル <code>ex06/ex06-2.rkt</code> に解答コードを書き加えて完成させること．</p><p>以下のすべての手続きを定義しなさい．</p><ul><li><code>make-segment</code></li><li><code>end-segment</code></li><li><code>make-point</code></li><li><code>x-point</code></li><li><code>y-point</code></li><li><code>midpoint-segment</code></li></ul><p>なお，最後の一つを除き，引数をいくつ受け取る手続きであるかを考えることも課題の一部であるため（<code>test</code> の中で一部ばれているが），下にはこれまでのような：</p><div class="highlight"><pre><code>(define (f x) (???))</code></pre></div><p>の形ではなく：</p><div class="highlight"><pre><code>(define f (???))</code></pre></div><p>の形のダミーの定義が書かれている．適宜，前者に書き換えて解くこと．（変数定義と関数定義が本質的に同じであることは1章で学んだとおり． すなわち，後者のまま <code>lambda</code> 式を使って  </p><div class="highlight"><pre><code>(define f (lambda (x) ...)</code></pre></div><p>と定義しても同じであり，それでも全然かまわない．）</p></p></div><div class="exercise"><h4>課題6.3 [★] [<a href="../pdf/jsicp.pdf#page=127" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.4を解きなさい．配布ファイル <code>ex06/ex06-3.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>cdr</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題6.4 [★★] [<a href="../pdf/jsicp.pdf#page=128" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.5を解きなさい．配布ファイル <code>ex06/ex06-4.rkt</code> に解答コードを書き加えて完成させること．</p><p>問題文の説明に従って定義された cons は次のとおりである．</p><div class="highlight"><pre><code>(define (cons a b)
+  (* (expt 2 a) (expt 3 b)))</code></pre></div><p>この <code>cons</code> に対応する <code>car</code> と <code>cdr</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題6.5 [★★★] [<a href="../pdf/jsicp.pdf#page=128" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.6を解きなさい．配布ファイル <code>ex06/ex06-5.rkt</code> に解答コードを書き加えて完成させること．</p><p>問題文の説明に従って <code>one</code>，<code>two</code>，<code>+</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題6.6 [★] [<a href="../pdf/jsicp.pdf#page=130" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.7を解きなさい．配布ファイル <code>ex06/ex06-6.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>upper-bound</code>，<code>lower-bound</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題6.7 [★] [<a href="../pdf/jsicp.pdf#page=130" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.8を解きなさい．配布ファイル <code>ex06/ex06-7.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>sub-interval</code> を定義しなさい．</p><p>なお，<code>ex06-6.rkt</code> 中の <code>make-interval</code>，<code>upper-bound</code>，<code>lower-bound</code> をこのファイルから呼び出すことが可能である．</p></p></div><div class="exercise"><h4>課題6.8 [★] [<a href="../pdf/jsicp.pdf#page=130" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.10を解きなさい．配布ファイル <code>ex06/ex06-8.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>div-interval</code> を問題文中で指示されているとおりに改良しなさい．元の <code>div-interval</code> 定義は以下のとおり．</p><div class="highlight"><pre><code>(define (div-interval x y)
+  (mul-interval
+    x
+    (make-interval (/ 1.0 (upper-bound y))
+                   (/ 1.0 (lower-bound y)))))</code></pre></div><p>エラーを報告するには，組み込みの手続き <code>(error &lt;msg&gt; &lt;e1&gt; &lt;e2&gt; ...)</code> を用いること．呼び出した時点でプログラムの実行は中断し，<code>&lt;msg&gt;</code> が画面に表示される．したがって，<code>&lt;msg&gt;</code> にはエラーの内容を説明する文字列を指定しておくのが望ましい．さらに，<code>&lt;e1&gt;</code>, <code>&lt;e2&gt;</code> ... を評価した結果の値が，<code>&lt;msg&gt;</code> に続けて表示される．たとえば，</p><pre><code>&gt; (+ 1 2 (error "not equal:" (+ 1 3) 3) 4)
+; not equal: 4 3
+; Context:
+;  /Applications/Racket v7.6/collects/racket/repl.rkt:11:26</code></pre><p>となる（足し算の途中で実行が中断していることに注意）．</p><p>なお，<code>ex06-6.rkt</code> 中の <code>make-interval</code>，<code>upper-bound</code>，<code>lower-bound</code> をこのファイルから呼び出すことが可能である．</p></p></div><div class="exercise"><h4>課題6.9 [★★★] [<a href="../pdf/jsicp.pdf#page=130" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.11を解きなさい．配布ファイル <code>ex06/ex06-9.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>mul-interval</code> を問題文中で指示されているとおりに改良しなさい．元の <code>mul-interval</code> 定義は以下のとおり．</p><div class="highlight"><pre><code>(define (mul-interval x y)
+  (let ((p1 (* (lower-bound x) (lower-bound y)))
+        (p2 (* (lower-bound x) (upper-bound y)))
+        (p3 (* (upper-bound x) (lower-bound y)))
+        (p4 (* (upper-bound x) (upper-bound y))))
+    (make-interval (min p1 p2 p3 p4)
+                   (max p1 p2 p3 p4))))</code></pre></div><p>ヒント： <code>test</code> を読むと，場合分けの仕方に気付けるかも．</p><p>なお，<code>ex06-6.rkt</code> 中の <code>make-interval</code>，<code>upper-bound</code>，<code>lower-bound</code> をこのファイルから呼び出すことが可能である．</p></p></div><div class="exercise"><h4>課題6.10 [★★] [<a href="../pdf/jsicp.pdf#page=131" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題2.12を解きなさい．配布ファイル <code>ex06/ex06-10.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>make-center-percent</code> と <code>percent</code> を定義しなさい．ただし，パーセンテージは 0〜100 の数とする．（<code>center</code> は問題文に書かれているとおり，テキスト中のの定義をそのまま使うことができる．）</p><p>なお，<code>ex06-6.rkt</code> 中の <code>make-interval</code>，<code>upper-bound</code>，<code>lower-bound</code> をこのファイルから呼び出すことが可能である．</p></p></div></section><p><anchor id="literacy-table"></anchor></p><section><h2>リテラシ関連項目まとめ</h2><p>利便性のため，前回までの操作方法・コマンドも全て含んでいます．今回追加された項目は<strong>太字</strong>で表しています．</p><h3>Emacs</h3><table><tr><th>キー</th><th>意味</th></tr><tr><td><code>C-f</code></td><td>カーソルを右（forward）へ1文字分だけ移動</td></tr><tr><td><code>C-b</code></td><td>カーソルを左（backward）へ1文字分だけ移動</td></tr><tr><td><code>C-n</code></td><td>カーソルを下（next）へ1行分だけ移動</td></tr><tr><td><code>C-p</code></td><td>カーソルを上（previous）へ1行分だけ移動</td></tr><tr><td><code>C-v</code></td><td>カーソルを下へ1画面分だけ移動</td></tr><tr><td><code>M-v</code></td><td>カーソルを上へ1画面分だけ移動</td></tr><tr><td><code>M-&lt;</code></td><td>カーソルをバッファの先頭へ移動</td></tr><tr><td><code>M-&gt;</code></td><td>カーソルをバッファの末尾へ移動</td></tr><tr><td><code>C-a</code></td><td>カーソルを現在行の先頭へ移動</td></tr><tr><td><code>C-e</code></td><td>カーソルを現在行の末尾へ移動</td></tr><tr><td><code>C-x C-g</code></td><td>カーソルを指定行へ移動</td></tr><tr><td><code>C-l</code></td><td>カーソルのある行が画面の中央になるよう再描画</td></tr><tr><td><code>C-d</code></td><td>カーソル上の1文字を削除</td></tr><tr><td><code>C-h</code></td><td>カーソル直前の1文字を削除</td></tr><tr><td><code>C-SPC</code></td><td>カーソル位置にマークを設定</td></tr><tr><td><code>C-w</code></td><td>選択範囲を切り取り</td></tr><tr><td><code>M-w</code></td><td>選択範囲をコピー</td></tr><tr><td><code>C-y</code></td><td>キルリングの内容を貼り付け</td></tr><tr><td><code>C-k</code></td><td>行末尾までの切り取り</td></tr><tr><td><code>C-x C-f</code></td><td>ファイルを開く</td></tr><tr><td><code>C-x C-s</code></td><td>ファイルの保存</td></tr><tr><td><code>C-x C-c</code></td><td>Emacs を終了</td></tr><tr><td><code>C-x b</code></td><td>表示するバッファを変更</td></tr><tr><td><code>C-x C-b</code></td><td>バッファ管理用バッファを表示</td></tr><tr><td><code>C-x k</code></td><td>バッファを閉じる</td></tr><tr><td><code>C-g</code></td><td>コマンドの中断</td></tr><tr><td><code>C-x 2</code></td><td>ウィンドウを上下に分割</td></tr><tr><td><code>C-x 5</code></td><td>ウィンドウを左右に分割</td></tr><tr><td><code>C-x 1</code></td><td>ウィンドウを1つにする</td></tr><tr><td><code>C-x o</code></td><td>アクティブなウィンドウの切り替え</td></tr><tr><td><code>C-s</code></td><td>前向きにインクリメンタル検索</td></tr><tr><td><code>C-r</code></td><td>後ろ向きにインクリメンタル検索</td></tr><tr><td><code>M-%</code></td><td>文字列の置換</td></tr><tr><td><code>M-x eshell</code></td><td>シェルを起動</td></tr></table><h3>Racketモード</h3><table><tr><th>キー</th><th>意味</th></tr><tr><td><code>C-c C-k</code></td><td>ソースファイルを対話環境に読み込む</td></tr><tr><td><code>C-c C-z</code></td><td>ソースファイルと対話環境の間のカーソル移動</td></tr><tr><td><strong><code>C-M-f</code></strong></td><td><strong>カーソルを右（forward）へ式1つ分だけ移動</strong></td></tr><tr><td><strong><code>C-M-b</code></strong></td><td><strong>カーソルを左（backward）へ式1つ分だけ移動</strong></td></tr><tr><td><strong><code>C-M-a</code></strong></td><td><strong>カーソルを現在のトップレベル式の先頭へ移動</strong></td></tr><tr><td><strong><code>C-M-e</code></strong></td><td><strong>カーソルを現在のトップレベル式の末尾へ移動</strong></td></tr><tr><td><strong><code>C-M-k</code></strong></td><td><strong>カーソル位置の直後の式全体を切り取り</strong></td></tr><tr><td><strong><code>C-M-SPC</code></strong></td><td><strong>カーソル位置の直後の式全体を領域選択</strong></td></tr><tr><td><strong><code>C-M-q</code></strong></td><td><strong>カーソル位置の直後の式全体を自動インデント</strong></td></tr></table><h3>シェル</h3><table><tr><th width="180px">コマンド</th><th>意味</th></tr><tr><td><code>pwd</code></td><td>カレントディレクトリを表示（present working directory）</td></tr><tr><td><code>cd </code><i>dir</i></td><td>カレントディレクトリを <i>dir</i> へ変更．<i>dir</i> を指定しない場合はホームディレクトリへ変更（change directory）</td></tr><tr><td><code>ls </code><i>dir</i></td><td>ディレクトリ <i>dir</i> の中身（<i>dir</i> を省略した場合はカレントディレクトリの中身）をリスト表示（list）</td></tr><tr><td><code>cp </code><i>src</i><code> </code><i>dst</i></td><td>ファイル <i>src</i> を <i>dst</i> へコピー（copy）</td></tr><tr><td><code>cp -r </code><i>src</i><code> </code><i>dst</i></td><td>ディレクトリ <i>src</i> 全体を <i>dst</i> へコピー（copy）</td></tr><tr><td><code>mv </code><i>src</i><code> </code><i>dst</i></td><td>ファイル <i>src</i> を <i>dst</i> へ移動（move）</td></tr><tr><td><code>rm </code><i>file</i> ...</td><td><i>file</i> ... を削除（remove）</td></tr><tr><td><code>rm -r </code><i>dir</i></td><td>ディレクトリ <i>dir</i> 全体を削除（remove）</td></tr><tr><td><code>echo </code><i>msg</i></td><td>文字列 <i>msg</i> を標準出力に表示</td></tr><tr><td><code>mkdir </code><i>dir</i></td><td>ディレクトリ <i>dir</i> を作成（make directory）</td></tr><tr><td><code>unzip </code><i>file</i></td><td>zip ファイル <i>file</i> をカレントディレクトリに展開</td></tr><tr><td><code>zip -r </code><i>file</i><code> </code><i>dir</i></td><td>ディレクトリ <i>dir</i> を zip ファイル <i>file</i> に圧縮</td></tr><tr><td><code>diff </code><i>old</i><code> </code><i>new</i></td><td>ファイル <i>old</i> と ファイル <i>new</i> を比較</td></tr><tr><td><code>grep </code><i>str</i><code> </code><i>file</i> ...</td><td>文字列 <i>str</i> を ファイル <i>file</i> ... の中から検索</td></tr><tr><td><code>find </code><i>dir</i><code> -name '</code><i>file</i><code>'</code></td><td>名前が <i>file</i> にマッチするファイルをディレクトリ <i>dir</i> から探す</td></tr></table></section>
+    </article>
+    <nav class="bottom">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+        <a href="../chap/05_mid.html">&larr; Previous</a>
+
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+        <li class="right copy">&copy; 2022 Seiji Umatani</li>
+      </ul>
+    </nav>
+  </body>
+</html>

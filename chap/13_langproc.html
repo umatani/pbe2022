@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <title>13. 言語処理系の初歩</title>
+    <link rel="stylesheet" href="../tufte.css"/>
+    <link rel="stylesheet" href="../latex.css"/>
+    <link rel="stylesheet" href="../umatani.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 綺麗なアイコン -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          rel="stylesheet"/>
+    <!-- <\!-- Highlight.js -\-> -->
+    <!-- <link rel="stylesheet" href="highlight/styles/default.css"/> -->
+    <!-- <script src="highlight/highlight.pack.js"></script> -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- 数式 -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+          }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="top">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+
+        <span><a class="ghost">&larr; Previous</a></span>
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+      </ul>
+    </nav>
+    <article>
+      <h1 id="tufte-css"><div id="top"/>
+        13. 言語処理系の初歩
+        <span class="alert"> 部外秘</span>
+      </h1>
+
+
+      <ul class="signpost"><li>　</li><li><a href="../pdf/jsicp.pdf#page=425" class="external">テキスト： 4.1節</a></li><li><a href="../src/ex/ex13.zip" class="internal">配布ファイル： ex13.zip</a></li></ul>
+      <p><anchor id="exercise"></anchor></p><section><h2>今週の課題</h2><p>今回は，</p><blockquote><p><strong>解いた課題の★の数の合計が2個以上</strong></p></blockquote><p>であることを最低条件とします．なお，課題13.8以降は講義では扱っていませんが，時間のある人は是非自分でテキストを読んでチャレンジしてみて下さい．</p><ul><li>解いた課題の★の数の合計：2個以上</li><li>提出期限：7/13(水) 19:00</li><li>zip に圧縮するディレクトリ名：<tt>ex13</tt></li><li>提出する zip ファイル名：<tt>ex13.zip</tt></li></ul><div class="exercise"><h4>課題13.1 [★] [<a href="../pdf/jsicp.pdf#page=431" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.1を解きなさい．配布ファイル <code>ex13/ex13-1.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>exps</code> を左から右へ順に評価する <code>list-of-values-from-left</code> と，右から左へ順に評価する <code>list-of-values-from-right</code> をそれぞれ定義しなさい．なお，元の <code>list-of-values</code> の定義は次のとおり．</p><pre><code>(define (list-of-values exps env)
+  (if (no-operands? exps)
+      '()
+      (cons (eval (first-operand exps) env)
+            (list-of-values (rest-operands exps) env))))</code></pre><p><code>simple.rkt</code> 中の評価器用コードをこのファイルから利用できる．ただし，<code>eval</code> については，評価順序を確認できるよう修正してある以下のバージョンを使用すること（普通に <code>eval</code> という名前で呼び出せば，こちらが呼ばれる）．</p><pre><code>(define (eval exp env)
+  (let ((r (eval-orig exp env)))
+    (displayln r)
+    r))</code></pre></p></div><div class="exercise"><h4>課題13.2 [★] [<a href="../pdf/jsicp.pdf#page=436" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.2を解きなさい．配布ファイル <code>ex13/ex13-2.rkt</code> に解答コードを書き加えて完成させること．</p><p>手続き呼び出しが <code>(factorial 3)</code> ではなく，<code>(call factorial 3)</code>と書けるよう，評価器を修正しなさい．</p><p>修正する必要がある箇所の特定も課題の一部であるため，以下に<code>simple.rkt</code> のコード全体をコピーしてある．必要最小限の箇所だけ書き換えること．その際，修正した箇所がすぐ分かるよう，書き換えた箇所の前後に必ず「<code>;; modified by XXXX</code>」「<code>;; end of modified</code>」というコメントをつけること（<code>XXXX</code> はあなたの名前）．たとえば，手続き <code>eval</code> の <code>application?</code> の節を問題文の指定どおりに移動してある箇所には，すでにそのようなコメントをつけてある．</p></p></div><div class="exercise"><h4>課題13.3 [★★] [<a href="../pdf/jsicp.pdf#page=437" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.4を解きなさい．配布ファイル <code>ex13/ex13-3.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>and</code> と <code>or</code> を実装しなさい．特殊形式として実装するか，導出された式として実装するかは，どちらか好きな方を選んでよい．</p><p>手続き <code>eval</code>，および，<code>eval</code> と相互に依存する定義を下にコピーしてあるが，すべてを書き換える必要はない．必要最小限の箇所だけ書き換えること．もちろん補助的に用いるための新しい手続きや変数を追加してもかまわない．</p><p>追加・修正した箇所がすぐ分かるよう，書き換えた箇所の前後に必ず「<code>;; modified by XXXX</code>」「<code>;; end of modified</code>」というコメントをつけること（<code>XXXX</code> はあなたの名前）．</p></p></div><div class="exercise"><h4>課題13.4 [★] [<a href="../pdf/jsicp.pdf#page=438" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.5を解きなさい．配布ファイル <code>ex13/ex13-4.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>cond</code> を問題文の指示どおりに拡張しなさい．</p><p><code>cond</code> の実装に関する定義を下にコピーしてあるが，すべてを書き換える必要はない．必要最小限の箇所だけ書き換えること．もちろん補助的に用いるための新しい手続きや変数を追加してもかまわない．</p><p>追加・修正した箇所がすぐ分かるよう，書き換えた箇所の前後に必ず「<code>;; modified by XXXX</code>」「<code>;; end of modified</code>」というコメントをつけること（<code>XXXX</code> はあなたの名前）．</p></p></div><div class="exercise"><h4>課題13.5 [★] [<a href="../pdf/jsicp.pdf#page=438" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.6を解きなさい．配布ファイル <code>ex13/ex13-5.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>let</code> を実装しなさい．</p><p>以下のコードのすべてを書き換える必要はない．必要最小限の箇所だけ書き換えること．もちろん補助的に用いるための新しい手続きや変数を追加してもかまわない．</p><p>追加・修正した箇所がすぐ分かるよう，書き換えた箇所の前後に必ず「<code>;; modified by XXXX</code>」「<code>;; end of modified</code>」というコメントをつけること（<code>XXXX</code> はあなたの名前）．</p></p></div><div class="exercise"><h4>課題13.6 [★★] [<a href="../pdf/jsicp.pdf#page=438" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.7を解きなさい．配布ファイル <code>ex13/ex13-6.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>let*</code> を実装しなさい．</p><p>テキストの指示どおりに実装する場合，前問（課題13.5）の <code>let</code> が必要となる．<code>ex13-5.rkt</code> 中のすべてのコード（自分では修正していない定義等も含む）を手作業で以下にコピーし，それに対してさらにコードの追加を行うことで実装すること．</p><p>追加・修正した箇所がすぐ分かるよう，書き換えた箇所の前後に必ず「<code>;; modified by XXXX</code>」「<code>;; end of modified</code>」というコメントをつけること（<code>XXXX</code> はあなたの名前）．(課題13.5 でつけていたコメントは削除すること．)</p></p></div><div class="exercise"><h4>課題13.7 [★★★] [<a href="../pdf/jsicp.pdf#page=439" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.8を解きなさい．配布ファイル <code>ex13/ex13-7.rkt</code> に解答コードを書き加えて完成させること．</p><p>名前つき <code>let</code> を実装しなさい．</p><p>テキストの指示どおりに実装する場合，課題13.5 の <code>let</code> の実装にさらに手を加える必要がある．<code>ex13-5.rkt</code> 中のすべてのコード（自分では修正していない定義等も含む）を手作業で以下にコピーし，それに対してさらにコードの追加を行うことで実装すること．</p><p>追加・修正した箇所がすぐ分かるよう，書き換えた箇所の前後に必ず「<code>;; modified by XXXX</code>」「<code>;; end of modified</code>」というコメントをつけること（<code>XXXX</code> はあなたの名前）．(課題13.5 でつけていたコメントは削除すること．)</p></p></div><div class="exercise"><h4>課題13.8 [★★] [<a href="../pdf/jsicp.pdf#page=454" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.16を解きなさい．配布ファイル <code>ex13/ex13-8.rkt</code> に解答コードを書き加えて完成させること．</p><p>テキストや問題文の指示に従い，内部定義を実装しなさい．なお，a の環境に対する修正は <code>env.rkt</code> 中ですでに行われているので，b と c を行うだけでよい．</p><p>また，<code>make-procedure</code> や <code>procedure-body</code> が依存する課題13.5の<code>let</code> の実装が必要となる．以下に <code>ex13-5.rkt</code> の解答コード全体をコピーしなさい．この課題を完成させるために，それらを書き換えてはいけません．</p></p></div><div class="exercise"><h4>課題13.9 [★★] [<a href="../pdf/jsicp.pdf#page=456" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.20を解きなさい．配布ファイル <code>ex13/ex13-9.rkt</code> に解答コードを書き加えて完成させること．</p><p>問題文の a に書かれている方法に従い，<code>letrec</code> を実装しなさい．</p><p>テキストの指示どおりに実装する場合，課題13.5の <code>let</code> が必要となる．<code>ex13-5.rkt</code> 中のすべてのコード（自分では修正していない定義等も含む）を手作業で以下にコピーし，それに対してさらにコードの追加を行うことで実装すること．</p><p>追加・修正した箇所がすぐ分かるよう，書き換えた箇所の前後に必ず「<code>;; modified by XXXX</code>」「<code>;; end of modified</code>」というコメントをつけること（<code>XXXX</code> はあなたの名前）．(課題13.5 でつけていたコメントは削除すること．)</p></p></div><div class="exercise"><h4>課題13.10 [★] [<a href="../pdf/jsicp.pdf#page=457" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.21を解きなさい．配布ファイル <code>ex13/ex13-10.rkt</code> に解答コードを書き加えて完成させること．</p><p>問題文の説明に従い，</p><ol style="list-style-type: lower-latin"><li>20番目のフィボナッチ数を計算する式を書きなさい．</li><li><code>(???)</code> を埋めることで <code>even?</code> を計算する手続き <code>f</code> を完成させなさい．<code>(???)</code> 以外のところを書き換えてはいけません．</li></ol></p></div><div class="exercise"><h4>課題13.11 [★] [<a href="../pdf/jsicp.pdf#page=462" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題4.22を解きなさい．配布ファイル <code>ex13/ex13-11.rkt</code> に解答コードを書き加えて完成させること．</p><p>4.1.7節の評価器(構文解析と実行が分離しているもの)に対し，<code>let</code> を実装しなさい．</p><p>以下は，4.1.7節の評価器コードである．これらに対し必要なコードの追加を行うことで実装すること．</p><p>追加・修正した箇所がすぐ分かるよう，書き換えた箇所の前後に必ず「<code>;; modified by XXXX</code>」「<code>;; end of modified</code>」というコメントをつけること（<code>XXXX</code> はあなたの名前）．</p></p></div></section>
+    </article>
+    <nav class="bottom">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+
+        <span><a class="ghost">&larr; Previous</a></span>
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+        <li class="right copy">&copy; 2022 Seiji Umatani</li>
+      </ul>
+    </nav>
+  </body>
+</html>

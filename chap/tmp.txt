@@ -1,0 +1,118 @@
+◊subsection{Scoop（アプリケーション導入＆管理ツール）のインストール}
+
+1. powershellを起動
+
+
+2. Scoopのインストール
+
+```shell
+iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+```
+
+もし何かエラーが出たら先に以下のコマンドを実行してから，
+もう一度上のコマンドを実行．
+
+```shell
+set-executionpolicy remotesigned -scope CurrentUser
+```
+
+
+◊subsection{MSYS2のインストール}
+
+
+1. msys2のインストール
+
+```shell
+> scoop install msys2
+```
+
+```shell
+> msys2
+```
+
+ここでpowershell終了．
+
+```shell
+> exit
+```
+を2回．
+
+msys2を起動．
+
+```shell
+$ pwd
+```
+
+で /c/Users/XXXX と出てくるならOK．
+
+dot.bash_profileをダウンロードして以下を実行．
+
+```shell
+$ mv Downloads/dot.bash_profile .bash_profile
+$ source .bash_profile
+```
+
+
+◊subsection{Emacs, Racketのインストール}
+
+2. emacsのインストール
+
+```shell
+$ scoop install git
+```
+
+```shell
+$ scoop bucket add extras
+$ scoop install emacs
+```
+
+Emacsを起動．
+
+```shell
+$ runemacs
+```
+xボタンで一旦終了．init.elをダウンロードして以下を実行．
+
+```shell
+$ mv Downloads/init.el .emacs.d/
+```
+
+再度Emacsを起動．少し時間かかる．
+
+xボタンで終了．再度起動．
+
+```shell
+$ runemacs
+```
+
+xボタンで終了．
+
+
+
+
+
+
+
+3. Racketのインストール
+
+```shell
+$ scoop install racket
+```
+
+racketの動作確認．
+
+```shell
+$ racket
+Welcome to Racket v8.0 [cs].
+```
+
+```shell
+$ racket
+Welcome to Racket v8.0 [cs].
+> (exit)
+```
+
+で終了．
+
+scoop でインストールしたアプリの定期的なアップグレード
+についてもここに書く．

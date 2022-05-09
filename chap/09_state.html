@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <title>9. 代入と局所状態</title>
+    <link rel="stylesheet" href="../tufte.css"/>
+    <link rel="stylesheet" href="../latex.css"/>
+    <link rel="stylesheet" href="../umatani.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 綺麗なアイコン -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          rel="stylesheet"/>
+    <!-- <\!-- Highlight.js -\-> -->
+    <!-- <link rel="stylesheet" href="highlight/styles/default.css"/> -->
+    <!-- <script src="highlight/highlight.pack.js"></script> -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- 数式 -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+          }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="top">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+
+        <span><a class="ghost">&larr; Previous</a></span>
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+      </ul>
+    </nav>
+    <article>
+      <h1 id="tufte-css"><div id="top"/>
+        9. 代入と局所状態
+        <span class="alert"> 部外秘</span>
+      </h1>
+
+
+      <ul class="signpost"><li>　</li><li><a href="../pdf/jsicp.pdf#page=264" class="external">テキスト： 3.1節</a></li><li><a href="../src/ex/ex09.zip" class="internal">配布ファイル： ex09.zip</a></li></ul>
+      <section><h2>はじめに</h2><p>今週と次週でテキストの3.1，3.2，3.3節の内容を扱います．今週は，3.1節からの問題が含まれています．</p></section><p><anchor id="exercise"></anchor></p><section><h2>今週の課題</h2><p>今回は，</p><blockquote><p><strong>解いた課題の★の数の合計が3個以上</strong></p></blockquote><p>であることを最低条件とします．もちろん，それに縛られず一つでも多くの課題にチャレンジしてください．</p><ul><li>解いた課題の★の数の合計：3個以上</li><li>提出期限：6/15(水) 19:00</li><li>zip に圧縮するディレクトリ名：<tt>ex09</tt></li><li>提出する zip ファイル名：<tt>ex09.zip</tt></li></ul><div class="exercise"><h4>課題9.1 [★] [<a href="../pdf/jsicp.pdf#page=270" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題3.1を解きなさい．配布ファイル <code>ex09/ex09-1.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>make-accumulator</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題9.2 [★★] [<a href="../pdf/jsicp.pdf#page=270" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題3.2を解きなさい．配布ファイル <code>ex09/ex09-2.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>make-monitored</code> を定義しなさい．</p></p></div><div class="exercise"><h4>課題9.3 [★] [<a href="../pdf/jsicp.pdf#page=271" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題3.3を解きなさい．配布ファイル <code>ex09/ex09-3.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>make-account</code> を問題文中で指定されているとおりに修正しなさい．元の <code>make-account</code> の定義は次のとおり．</p><div class="highlight"><pre><code>(define (make-account balance)
+  (define (withdraw amount)
+    (if (&gt;= balance amount)
+        (begin (set! balance (- balance amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (define (dispatch m)
+    (cond ((eq? m 'withdraw) withdraw)
+          ((eq? m 'deposit) deposit)
+          (else (error "Unknown request -- MAKE-ACCOUNT"
+                       m))))
+  dispatch)</code></pre></div></p></div><div class="exercise"><h4>課題9.4 [★★] [<a href="../pdf/jsicp.pdf#page=271" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題3.4を解きなさい．配布ファイル <code>ex09/ex09-4.rkt</code> に解答コードを書き加えて完成させること．</p><p>前問で作成した <code>make-account</code> を問題文中で指定されているとおりに修正しなさい．7回連続でパスワードが間違っていた場合に呼び出す <code>call-the-cops</code> 手続きは次のものにすること．</p><div class="highlight"><pre><code>(define (call-the-cops) "Call the cops!")</code></pre></div></p></div><div class="exercise"><h4>課題9.5 [★★] [<a href="../pdf/jsicp.pdf#page=274" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題3.5を解きなさい．配布ファイル <code>ex09/ex09-5.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>estimate-integral</code> を定義しなさい．定義にあたっては，必ず次の <code>monte-carlo</code> 手続きを使用すること．さらに，<code>estimate-integral</code> を使って$\pi$の値を見積る手続き <code>estimate-pi</code> を定義しなさい．<code>estimeta-pi</code> は試行回数を引数に受け取るものとする．</p><div class="highlight"><pre><code>(define (monte-carlo trials experiment)
+  (define (iter trials-remaining trials-passed)
+    (cond ((= trials-remaining 0)
+           (/ trials-passed trials))
+          ((experiment)
+           (iter (- trials-remaining 1) (+ trials-passed 1)))
+          (else
+           (iter (- trials-remaining 1) trials-passed))))
+  (iter trials 0))</code></pre></div><p>Racket 標準の <code>random</code> はテキストとは仕様が異なるため注意．テキスト中の定義ではなく，以下の定義を使うこと．</p><div class="highlight"><pre><code>(define (random-in-range low high)
+  (let ((range (- high low)))
+    (+ low (* range (random)))))</code></pre></div></p></div><div class="exercise"><h4>課題9.6 [★★] [<a href="../pdf/jsicp.pdf#page=275" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題3.6を解きなさい．配布ファイル <code>ex09/ex09-6.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>rand</code> を問題文のとおりに改良しなさい．元の <code>rand</code>，および，<code>rand</code> の内部で使用している <code>random-init</code>，<code>rand-update</code> の定義は以下のとおりとする．</p><div class="highlight"><pre><code>(define rand
+  (let ((x random-init))
+    (lambda ()
+      (set! x (rand-update x))
+      x)))
+
+(define random-init 1)
+
+(define (rand-update prev)
+  (define a 1664525)
+  (define c 1013904223)
+  (define m (expt 2 32))
+  (modulo (+ (* a prev) c) m))</code></pre></div></p></div><div class="exercise"><h4>課題9.7 [★★] [<a href="../pdf/jsicp.pdf#page=282" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題3.7を解きなさい．配布ファイル <code>ex09/ex09-7.rkt</code> に解答コードを書き加えて完成させること．</p><p><code>make-joint</code> を定義しなさい．ただし，第二引数で指定する元の口座のパスワードが間違っている場合には，<code>make-join</code> は文字列 <code>"Incorrect password"</code> を返すものとする．</p><p>必要であれば，課題9.3で定義した <code>make-account</code> を再定義してもよい．このファイルで再定義しなければ，課題9.3で定義した <code>make-account</code> がそのまま呼び出されるようになっている．</p></p></div><div class="exercise"><h4>課題9.8 [★] [<a href="../pdf/jsicp.pdf#page=283" class="external">テキスト中の問題文へのリンク</a>]</h4><p><p>リンク先の問題3.8を解きなさい．配布ファイル <code>ex09/ex09-8.rkt</code> に解答コードを書き加えて完成させること．</p><p>問題文に書かれているような振舞いをする手続き <code>f</code> を定義しなさい．<code>f</code> 自身の評価結果は何でもかまわない．</p></p></div></section>
+    </article>
+    <nav class="bottom">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+
+        <span><a class="ghost">&larr; Previous</a></span>
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+        <li class="right copy">&copy; 2022 Seiji Umatani</li>
+      </ul>
+    </nav>
+  </body>
+</html>

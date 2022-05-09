@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <title>質問の仕方</title>
+    <link rel="stylesheet" href="../tufte.css"/>
+    <link rel="stylesheet" href="../latex.css"/>
+    <link rel="stylesheet" href="../umatani.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 綺麗なアイコン -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          rel="stylesheet"/>
+    <!-- <\!-- Highlight.js -\-> -->
+    <!-- <link rel="stylesheet" href="highlight/styles/default.css"/> -->
+    <!-- <script src="highlight/highlight.pack.js"></script> -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- 数式 -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+          }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="top">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+        <a href="../news/01_admin.html">&larr; Previous</a>
+
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+      </ul>
+    </nav>
+    <article>
+      <h1 id="tufte-css"><div id="top"/>
+        質問の仕方
+
+      </h1>
+
+
+
+      <h3>公開日：2022/04/01</h3><section><h2>お知らせ内容</h2><p>対面ではなくメール等の文章を書いて質問せざるを得ない状況が今も続いています．この機会をプラスに捉え，文章による上手な質問の仕方もぜひ身につけましょう．この演習だけではなく，他の授業の先生へ質問する際にも役に立つはずです．</p><p>まず第一に，自分が何に困っていてどういう状況なのかを，詳しく，かつ簡潔に説明することを心がけてください．そうすると，的確な答えをすぐに返してもらえる可能性が上がります．質問する側にも，それなりの技術<label for="side54059" class="margin-toggle sidenote-number"></label><input type="checkbox" id="side54059" class="margin-toggle"/><span class="sidenote">なにも難しい事を要求しているわけではありません．日常会話と同じく「相手の立場にたって考える」という，コミュニケーションにおける基本を押さえておけば，自然と身につく技術です．</span>が必要ということです．</p><p>具体的には以下の点に注意してみると良いです．</p><ul><li><p>質問を書きはじめる前に，以下をまず自分の頭の中で整理してみる</p><ul><li>具体的にコードのどの箇所が問題となっていそうか</li><li>問題となっていそうな箇所に関し，自分がきちんと理解できていると自信の持てること</li><li>逆に，まだしっかり理解できていなさそうなこと</li></ul></li><li>整理できたら，一度にたくさんのことを解決しようとはせず，まずは直近の問題となっていそうなところを特定し要点を絞る．複数の問題が絡み合っている場合でも，少しずつ解決する以外に方法はありません</li><li>エラーメッセージが出て困っているなら，コードだけでなくそのメッセージも示し，エラーメッセージ中のどこが理解できないかを伝えること</li></ul><p>これらの注意点を気にかけながら，分かりやすい質問を書くという作業は，自分の頭の中を整理するのにも役立ちます．分かりやすい質問を書こうと努力しているうちに，自分で間違いに気づき質問するまでもなく解決したということは，本当に頻繁にあることです．</p><p>また，アプリケーションのインストールや設定のことであればスクリーン画像が役に立つこともありますが，プログラムの内容に関する質問では，Emacs 画面のキャプチャ画像ではなく，ソースコードや対話環境上のやり取りをメール本文などにテキストとして載せてください．<strong>画像からはコードのコピペができません．</strong>プログラム全体を示して説明する必要があるならソースファイルを添付してください．</p><p>以下，分かりやすい質問の例文です．なお，<strong>Teams の質問では自分の名前を名乗る必要はありません（匿名の場所となるよう大学で設定されています）</strong>．</p><ol><li><p>メール</p><pre><code>Subject: 課題X-XXについての質問
+
+〇〇先生，
+
+「プログラミングB演習」を履修している〇〇 〇〇です．
+
+課題X-XXを解くにあたり，以下のような手続きfを
+定義しました．
+
+(define (f x n r)
+  (if (= x n)
+      r
+      (f (+ x 2) n (+ r x))))
+
+この手続きfを(f 1 100 0)と呼び出すことにより
+1〜100の間の偶数の和を計算しようと思ったのですが，
+呼び出すと計算が止まりません．
+
+私としては，4行目のfの呼出しの引数のどれかが
+正しくないからだと考えているのですが，そのどれが
+おかしいのか，どのようにおかしいのか原因か分からず，
+困っています．アドバイスをいただけると助かります．
+
+よろしくお願いいたします．
+
+〇〇 (自分の名前)</code></pre></li><li><p>メール + 添付</p><pre><code>Subject: 課題X-XXについての質問
+
+〇〇先生，
+
+「プログラミングB演習」を履修している〇〇 〇〇です．
+
+課題X-XXを解くにあたり，添付ファイルXXX.rktの
+XX-XX行目に手続きfを定義しました．
+手続きfを(f 1 100 0)と呼び出すことにより
+1〜100の間の偶数の和を計算しようと思ったのですが，
+呼び出すと計算が止まりません．
+
+私としては，XX行目のfの呼出しの引数のどれかが
+正しくないからだと考えているのですが，そのどれが
+おかしいのか，どのようにおかしいのか原因か分からず，
+困っています．アドバイスをいただけると助かります．
+
+よろしくお願いいたします．
+
+〇〇 (自分の名前)</code></pre><p>(別途，ファイルXXX.rktを添付)</p></li><li><p>Teams のチャット（1 や 2 のメールの文章を簡素化）</p><pre><code>課題X-XXを解くにあたり，以下のような手続きfを
+定義しました．
+
+(define (f x n r)
+  (if (= x n)
+      r
+      (f (+ x 2) n (+ r x))))
+
+この手続きfを(f 1 100 0)と呼び出すことにより
+1〜100の間の偶数の和を計算しようと思ったのですが，
+呼び出すと計算が止まりません．
+
+私としては，5行目のfの呼出しの引数のどれかが
+正しくないからだと考えているのですが，そのどれが
+おかしいのか，どのようにおかしいのか原因か分からず，
+困っています．</code></pre></li></ol><p>参考：良くない質問メールの例1</p><pre><code>添付画像のコードが上手く動きません．</code></pre><p>（添付画像）</p><figure class=""><label for="fig54060" class="margin-toggle">&amp;#8853;</label><input type="checkbox" id="fig54060" class="margin-toggle"/><a href="wrong-mail.png"><img src="wrong-mail.png" alt=""/></a><span class="marginnote"></span></figure><p>参考：良くない質問メールの例2</p><pre><code>添付のコードを動かしたところ，結果が XXX となってしまいました．</code></pre><p>（別途，ソースコード添付）</p></section>
+    </article>
+    <nav class="bottom">
+      <ul>
+        <li>&nbsp;</li>
+        <li>
+        <a href="../news/01_admin.html">&larr; Previous</a>
+
+        </li>
+        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+
+        <li class="right copy">&copy; 2022 Seiji Umatani</li>
+      </ul>
+    </nav>
+  </body>
+</html>
